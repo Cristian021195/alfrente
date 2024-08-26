@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+    <title>Alumnos</title>
+
+    <!-- PWA -->
+    <link rel="icon" type="image/svg+xml" href="./assets/icon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="application-name" content="Al frente" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Al frente" />
+    <meta name="description" content="App didactica para docentes, tomar listado de presentes y hacer pasar a alumnos" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="x5-page-mode" content="app">
+    <meta name="browsermode" content="application">
+    <meta name="msapplication-TileColor" content="#800080" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="theme-color" content="#800080" />
+    <link rel="apple-touch-icon" href="./assets/icon.svg" />
+    <link rel="apple-touch-icon" sizes="192x192" href="./assets/icon_192.svg" />
+    <link rel="apple-touch-icon" sizes="256x256" href="./assets/icon_256.svg" />
+    <link rel="apple-touch-icon" sizes="512x512" href="./assets/icon.svg" />    
+    <link rel="mask-icon" href="./assets/icon.svg" sizes="any" type="image/svg+xml" color="#a340a3" />
+
+    <link rel="stylesheet" href="./style.css">
+    <script src="./app.js" defer></script>
+    <style>
+        .main{background-color: purple; color: whitesmoke; height: 100vh; text-align: center;}
+        .link_alumnos{text-decoration: none;}
+    </style>
+</head>
+<body>
+    <main class="main p-1">
+        <h1 id="alumno">Alumno</h1>
+        <button class="btn-sm bg-green top-right" id="instalar" onclick="instalar()">Instalar</button>
+        <div id="loader" class="d-none">
+            <svg width="48" height="48" stroke="#f5f5f5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g><circle cx="12" cy="12" r="9.5" fill="none" stroke-width="3" stroke-linecap="round"><animate attributeName="stroke-dasharray" dur="1.5s" calcMode="spline" values="0 150;42 150;42 150;42 150" keyTimes="0;0.475;0.95;1" keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1" repeatCount="indefinite"/><animate attributeName="stroke-dashoffset" dur="1.5s" calcMode="spline" values="0;-16;-59;-59" keyTimes="0;0.475;0.95;1" keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1" repeatCount="indefinite"/></circle><animateTransform attributeName="transform" type="rotate" dur="2s" values="0 12 12;360 12 12" repeatCount="indefinite"/></g></svg>
+        </div>
+        <br>
+        <br>
+        <br>
+        <button class="btn bg-orange" id="btn_buscar" type="button">Buscar</button>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a class="btn-sm bg-green link_alumnos" href="./alumnos.html">Ver alumnos</a>
+        <div class="d-flex between" id="opciones">
+            <a href="./config.html" class="opbtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-wrench" viewBox="0 0 16 16">
+                    <path d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364zm13.37 9.019.528.026.287.445.445.287.026.529L15 13l-.242.471-.026.529-.445.287-.287.445-.529.026L13 15l-.471-.242-.529-.026-.287-.445-.445-.287-.026-.529L11 13l.242-.471.026-.529.445-.287.287-.445.529-.026L13 11z"/>
+                </svg>
+            </a>
+            <a href="./info.html" class="opbtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-info-lg" viewBox="0 0 16 16">
+                    <path d="m9.708 6.075-3.024.379-.108.502.595.108c.387.093.464.232.38.619l-.975 4.577c-.255 1.183.14 1.74 1.067 1.74.72 0 1.554-.332 1.933-.789l.116-.549c-.263.232-.65.325-.905.325-.363 0-.494-.255-.402-.704zm.091-2.755a1.32 1.32 0 1 1-2.64 0 1.32 1.32 0 0 1 2.64 0"/>
+                </svg>
+            </a>
+        </div>
+    </main>
+    <script>
+        const $btn_buscar = document.getElementById('btn_buscar');
+        const $alumno = document.getElementById('alumno');
+        const $loader = document.getElementById('loader');
+        let link = localStorage.getItem('link') || '';
+        let alumnos = JSON.parse(localStorage.getItem('alumnos') || '[]');
+        //console.log(link)
+        //fetch(link)
+        //.then(res=>res.json())
+        //.then(res=>{{
+        //    $btn_buscar.removeAttribute('disabled');
+        //    alumnos = res.cuerpo;
+        //}})
+        //.catch(err=>{
+        //    alert('Error el link debería ser similar a https://script.google.com... ');
+        //})
+        //.finally(()=>{  
+        //    $loader.classList.add('d-none')
+        //})
+
+        $btn_buscar.addEventListener('click', (e)=>{
+            if(alumnos.length > 0){
+                let cantidad_alumnos = alumnos.length;
+                let rand = Math.floor(Math.random() * cantidad_alumnos);
+                $loader.classList.remove('d-none');
+                $alumno.classList.add('d-none');
+                setTimeout(() => {
+                    let alumno = alumnos[rand];
+                    $loader.classList.add('d-none');
+                    $alumno.textContent = `${alumno[0]} ${alumno[1]} ${alumno[2]}`;
+                    $alumno.classList.remove('d-none');
+                }, 3000);
+                console.log(alumnos[rand]);
+            }else{
+                console.log('sin listado')
+            }            
+        })
+    </script>
+</body>
+</html>

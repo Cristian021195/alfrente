@@ -1,0 +1,74 @@
+{
+    "lang": "es", 
+    "theme_color": "#800080",
+    "orientation": "portrait",
+    "background_color": "#a340a3",
+    "display": "standalone",
+    "handle_links": "preferred",
+    "dir": "ltr",
+    "scope": "/",
+    "start_url": "/",
+    "id": "/",
+    "name": "Al frente",
+    "short_name": "Al frente",
+    "description": "App didactica para docentes, tomar listado de presentes y hacer pasar a alumnos",
+    "categories": ["productivity"],
+    "icons": [
+        {
+            "src": "./assets/icon_192.svg",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "./assets/icon_256.svg",
+            "sizes": "256x256",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "./assets/icon_384.svg",
+            "sizes": "384x384",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "./assets/icon.svg",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "./assets/icon_192.svg",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "./assets/icon_256.svg",
+            "sizes": "256x256",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "./assets/icon_384.svg",
+            "sizes": "384x384",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "./assets/icon.svg",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "screenshots":[
+        {
+            "src": "./assets/iphone.png",
+            "sizes": "750x1333",
+            "type": "image/png",
+            "label": "Splash"
+        }
+    ]
+}
