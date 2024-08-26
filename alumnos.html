@@ -30,7 +30,9 @@
     <script src="./app.js" defer></script>
     <style>
         .main{background-color: purple; color: whitesmoke; height: 100vh; text-align: center;}
-        .link_orange{color: orange; font-weight: bold;}        
+        .link_orange{color: orange; font-weight: bold;}
+        table{width: 100%;}
+        .vs{overflow-y: scroll; height: 72vh;}
     </style>
 </head>
 <body>
@@ -38,7 +40,19 @@
         <h1 id="alumno">Alumnos</h1>
         <button class="btn-sm bg-green top-right" id="instalar" onclick="instalar()">Instalar</button>
         <br>
-        <table></table>
+        <div class="vs">
+            <table>
+                <thead>
+                    <th>#</th>
+                    <th>NOMBRE</th>
+                    <th>APELLIDO</th>
+                    <th>APODO</th>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
+        </div>
         <div class="d-flex between" id="opciones">
             <a href="../" class="opbtn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -54,7 +68,21 @@
     </main>
     <script>
         const alumnos = JSON.parse(localStorage.getItem('alumnos') || '[]');
-
+        const $tbody = document.getElementById('tbody');
+        const $frg = document.createDocumentFragment();
+        if(alumnos.length > 0){
+            alumnos.forEach((e,ei) => {
+                let $tr = document.createElement('tr');
+                $tr.innerHTML = `<td>${ei}</td><td>${e[0]}</td><td>${e[1]}</td><td>${e[2]}</td>`;
+                $frg.appendChild($tr);
+            });
+            $tbody.append($frg);
+        }else{
+            let $tr = document.createElement('tr');
+            $tr.innerHTML = `<td colspan="4"><b>SIN ALUMNOS CARGADOS</b></td>`;
+            $tbody.append($tr);
+        }
+        console.log(alumnos)
     </script>
 </body>
 </html>
