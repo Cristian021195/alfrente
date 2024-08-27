@@ -29,39 +29,40 @@
     <link rel="stylesheet" href="./style.css">
     <script src="./app.js" defer></script>
     <style>
-        .main{background-color: purple; color: whitesmoke; height: 100vh; text-align: center;}
         .link_orange{color: orange; font-weight: bold;}
         table{width: 100%;}
-        .vs{overflow-y: scroll; height: 72vh;}
+        .vs{overflow-y: scroll; height: 72vh;--sb-track-color: #640064;--sb-thumb-color: #7d3d7d;--sb-size: 8px;}
+        .vs::-webkit-scrollbar {width: var(--sb-size)}
+        .vs::-webkit-scrollbar-track {background: var(--sb-track-color);border-radius: 5px;}
+        .vs::-webkit-scrollbar-thumb {background: var(--sb-thumb-color);border-radius: 5px;}
+        @supports not selector(::-webkit-scrollbar) {body {scrollbar-color: var(--sb-thumb-color)var(--sb-track-color);}
+}
     </style>
 </head>
 <body>
-    <main class="main p-1">
-        <h1 id="alumno">Alumnos</h1>
-        <button class="btn-sm bg-green top-right" id="instalar" onclick="instalar()">Instalar</button>
-        <br>
-        <div class="vs">
-            <table>
-                <thead>
-                    <th>#</th>
-                    <th>NOMBRE</th>
-                    <th>APELLIDO</th>
-                    <th>APODO</th>
-                </thead>
-                <tbody id="tbody">
+    <main class="main">
+        <section class="p-1">
+            <h1 id="alumno">Alumnos</h1>
+            <button class="btn-sm bg-green top-right" id="instalar" onclick="instalar()">Instalar</button>
+            <br>
+            <div class="vs">
+                <table>
+                    <thead>
+                        <th>#</th>
+                        <th>NOMBRE</th>
+                        <th>APELLIDO</th>
+                        <!--<th>APODO</th>-->
+                    </thead>
+                    <tbody id="tbody">
 
-                </tbody>
-            </table>
-        </div>
+                    </tbody>
+                </table>
+            </div>
+        </section>
         <div class="d-flex between" id="opciones">
             <a href="../" class="opbtn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-                </svg>
-            </a>
-            <a href="#" class="opbtn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-info-lg" viewBox="0 0 16 16">
-                    <path d="m9.708 6.075-3.024.379-.108.502.595.108c.387.093.464.232.38.619l-.975 4.577c-.255 1.183.14 1.74 1.067 1.74.72 0 1.554-.332 1.933-.789l.116-.549c-.263.232-.65.325-.905.325-.363 0-.494-.255-.402-.704zm.091-2.755a1.32 1.32 0 1 1-2.64 0 1.32 1.32 0 0 1 2.64 0"/>
                 </svg>
             </a>
         </div>
@@ -73,16 +74,15 @@
         if(alumnos.length > 0){
             alumnos.forEach((e,ei) => {
                 let $tr = document.createElement('tr');
-                $tr.innerHTML = `<td>${ei}</td><td>${e[0]}</td><td>${e[1]}</td><td>${e[2]}</td>`;
+                $tr.innerHTML = `<td>${ei}</td><td>${e[0]}</td><td>${e[1]}</td>`;//<td>${e[2]}</td>
                 $frg.appendChild($tr);
             });
             $tbody.append($frg);
         }else{
             let $tr = document.createElement('tr');
-            $tr.innerHTML = `<td colspan="4"><b>SIN ALUMNOS CARGADOS</b></td>`;
+            $tr.innerHTML = `<td colspan="3" class="text-center"><b>SIN ALUMNOS CARGADOS</b></td>`;
             $tbody.append($tr);
         }
-        console.log(alumnos)
     </script>
 </body>
 </html>
