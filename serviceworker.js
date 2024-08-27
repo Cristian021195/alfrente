@@ -1,4 +1,4 @@
-const CACHE_NAME = "Alfrente";
+const CACHE_NAME = "Alfrente-v2";
 const urlsToCache = ["./", "./index.html","./config.html", "./info.html", "./alumnos.html", "./style.css", "./app.js"];
 
 self.addEventListener("install", event => {
