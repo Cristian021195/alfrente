@@ -4,7 +4,13 @@ if ('serviceWorker' in navigator) {
 let bipEvent = null;
 window.addEventListener("beforeinstallprompt", event => {
     bipEvent = event;
-    document.getElementById("instalar").classList.remove('d-none');
+    if (bipEvent?.outcome){
+        if (bipEvent.outcome === 'accepted') {
+            document.getElementById("instalar").classList.add('d-none');        
+        }else{
+            document.getElementById("instalar").classList.remove('d-none');
+        }
+    }    
 });
 function instalar() {
     if (bipEvent) bipEvent.prompt();
