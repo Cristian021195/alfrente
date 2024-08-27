@@ -6,7 +6,7 @@
     "display": "standalone",
     "handle_links": "preferred",
     "dir": "ltr",
-    "scope": "./",
+    "scope": ".",
     "start_url": "./",
     "name": "Al frente",
     "short_name": "Al frente",
