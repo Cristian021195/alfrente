@@ -83,7 +83,7 @@
             if(alumnos.length > 0){
             alumnos.forEach((e,ei) => {
                 let $tr = document.createElement('tr');
-                $tr.innerHTML = `<td>${ei+1}</td><td>${e[0]}</td><td>${e[1]}</td>
+                $tr.innerHTML = `<td>${ei+1}</td><td>${e[1]}</td><td>${e[2]}</td>
                 <td><button onclick="eliminar(${ei})" class="btnsm bg-orange">BORRAR</button></td>`;//<td>${e[2]}</td>
                 $frg.appendChild($tr);
             });
