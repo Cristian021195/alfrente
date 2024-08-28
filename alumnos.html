@@ -71,7 +71,7 @@
         renderizar();
         function eliminar(e){            
             const _alumnos = JSON.parse(localStorage.getItem('alumnos') || '[]');
-            const _res = _alumnos.filter((el) => el[0] !== e);
+            const _res = _alumnos.filter((el,eli) => eli !== e);
             localStorage.setItem('alumnos', JSON.stringify(_res));
             renderizar();
         }

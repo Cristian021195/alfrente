@@ -128,7 +128,7 @@
                 const pet = await fetch($url.value);
                 if(pet.status >= 200 && pet.status < 300){
                     const data = await pet.json();
-                    const alumnos = data.cuerpo;
+                    const alumnos = data.cuerpo.map((e,ei)=>[ei,...e]);
                     localStorage.setItem('alumnos', JSON.stringify(alumnos));
                     localStorage.setItem('link', $url.value);
                     alert('¡Planilla agregada!')
