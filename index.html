@@ -95,7 +95,7 @@
                 setTimeout(() => {
                     let alumno = alumnos[rand];
                     $loader.classList.add('d-none');
-                    $alumno.textContent = `${alumno[0]} ${alumno[1]}`;
+                    $alumno.textContent = `${rand + 1} - ${alumno[0]} ${alumno[1]}`;
                     $alumno.classList.remove('d-none');
                 }, 3000);
             }else{

@@ -1,4 +1,4 @@
-const CACHE_NAME = "Alfrente-v5";
+const CACHE_NAME = "Alfrente-v4";
 const urlsToCache = ["./", "./index.html","./config.html", "./info.html", "./alumnos.html", "./style.css", "./app.js", "./manifest.json"];
 
 self.addEventListener("install", event => {
@@ -7,6 +7,23 @@ self.addEventListener("install", event => {
         caches.open(CACHE_NAME)
         .then(cache => {
             return cache.addAll(urlsToCache);
+        })
+    );
+});
+
+// Activate event - clean up old caches
+self.addEventListener('activate', (event) => {
+    const cacheWhitelist = [CACHE_NAME];
+    event.waitUntil(
+        caches.keys().then((cacheNames) => {
+            return Promise.all(
+                cacheNames.map((cacheName) => {
+                    if (!cacheWhitelist.includes(cacheName)) {
+                        //console.log(`Deleting old cache: ${cacheName}`);
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
         })
     );
 });

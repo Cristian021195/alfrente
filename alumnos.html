@@ -51,6 +51,7 @@
                         <th>#</th>
                         <th>NOMBRE</th>
                         <th>APELLIDO</th>
+                        <th>ACCIÓN</th>
                         <!--<th>APODO</th>-->
                     </thead>
                     <tbody id="tbody">
@@ -67,20 +68,31 @@
         </div>
     </main>
     <script>
-        const alumnos = JSON.parse(localStorage.getItem('alumnos') || '[]');
-        const $tbody = document.getElementById('tbody');
-        const $frg = document.createDocumentFragment();
-        if(alumnos.length > 0){
+        renderizar();
+        function eliminar(e){            
+            const _alumnos = JSON.parse(localStorage.getItem('alumnos') || '[]');
+            const _res = _alumnos.filter((el) => el[0] !== e);
+            localStorage.setItem('alumnos', JSON.stringify(_res));
+            renderizar();
+        }
+        function renderizar(){
+            const alumnos = JSON.parse(localStorage.getItem('alumnos') || '[]');
+            const $tbody = document.getElementById('tbody');
+            const $frg = document.createDocumentFragment();
+            $tbody.innerHTML = '';
+            if(alumnos.length > 0){
             alumnos.forEach((e,ei) => {
                 let $tr = document.createElement('tr');
-                $tr.innerHTML = `<td>${ei}</td><td>${e[0]}</td><td>${e[1]}</td>`;//<td>${e[2]}</td>
+                $tr.innerHTML = `<td>${ei+1}</td><td>${e[0]}</td><td>${e[1]}</td>
+                <td><button onclick="eliminar(${ei})" class="btnsm bg-orange">BORRAR</button></td>`;//<td>${e[2]}</td>
                 $frg.appendChild($tr);
             });
             $tbody.append($frg);
-        }else{
-            let $tr = document.createElement('tr');
-            $tr.innerHTML = `<td colspan="3" class="text-center"><b>SIN ALUMNOS CARGADOS</b></td>`;
-            $tbody.append($tr);
+            }else{
+                let $tr = document.createElement('tr');
+                $tr.innerHTML = `<td colspan="3" class="text-center"><b>SIN ALUMNOS CARGADOS</b></td>`;
+                $tbody.append($tr);
+            }
         }
     </script>
 </body>

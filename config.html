@@ -114,7 +114,7 @@
 
         $alumno_form.addEventListener('submit', (e)=>{
             e.preventDefault();
-            _alumnos.push([$nombre.value, $apellido.value])
+            _alumnos.push([_alumnos.length,$nombre.value, $apellido.value])
             localStorage.setItem('alumnos', JSON.stringify(_alumnos));
             alert('Agregado');
             $alumno_form.reset();
