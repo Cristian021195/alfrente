@@ -1,5 +1,7 @@
-const CACHE_NAME = "Alfrente-v4";
-const urlsToCache = ["./", "./index.html","./config.html", "./info.html", "./alumnos.html", "./style.css", "./app.js", "./manifest.json"];
+const CACHE_NAME = "Alfrente-v5";
+const urlsToCache = ["./", "./index.html","./config.html", "./info.html",
+     "./alumnos.html", "./style.css", "./app.js", "./manifest.json", "./assets/icon.svg"
+    ,"./assets/icon_192.svg", "./assets/icon_256.svg","./assets/icon_384.svg"];
 
 self.addEventListener("install", event => {
     // Pre-cache archivos para offline y performance; los pictogramas los dejamos para la primera carga
